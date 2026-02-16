@@ -1,0 +1,105 @@
+%YAML 1.2
+---
+# Kodi Log File Syntax Definition
+name: Kodi Log Highlighter
+file_extensions:
+  - kodi.log
+  - kodi.old.log
+scope: text.log.kodi
+hidden_file_extensions:
+  - log
+file_patterns:
+  - 'kodi.*\.log$'
+first_line_match: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3} T:\d+\s+(info|debug|warning|error) <general>:|^#{10,}.*kodi.*CRASH LOG'
+
+contexts:
+  main:
+    # Match crashlog header and enter crashlog header mode
+    - match: '^#{10,}.*kodi.*CRASH LOG.*$'
+      scope: kodi.crashlog.header
+      set: in_crashlog_header
+    
+    # Match header separator and enter header mode
+    - match: '^.*info <general>: -{71}.*$'
+      scope: kodi.header
+      set: in_header
+    
+    # Timestamp - must come before line matches to always be highlighted
+    - match: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3} T:\d+'
+      scope: kodi.timestamp
+      push: rest_of_line
+  
+  rest_of_line:
+    # ### markers
+    - match: '###'
+      scope: kodi.hash
+    # Error lines
+    - match: 'error <general>'
+      scope: kodi.error
+      set: error_rest
+    # Warning lines  
+    - match: 'warning <general>'
+      scope: kodi.warning
+      set: warning_rest
+    # Info lines
+    - match: 'info <general>'
+      scope: kodi.info
+      set: info_rest
+    # Debug lines
+    - match: 'debug <general>'
+      scope: kodi.debug
+      set: debug_rest
+    # End of line
+    - match: '$'
+      pop: true
+  
+  error_rest:
+    - match: '###'
+      scope: kodi.hash
+    - match: '$'
+      scope: kodi.error
+      pop: true
+    - match: '.'
+      scope: kodi.error
+  
+  warning_rest:
+    - match: '###'
+      scope: kodi.hash
+    - match: '$'
+      pop: true
+    - match: '.'
+      scope: kodi.warning
+  
+  info_rest:
+    - match: '###'
+      scope: kodi.hash
+    - match: '$'
+      pop: true
+    - match: '.'
+      scope: kodi.info
+  
+  debug_rest:
+    - match: '###'
+      scope: kodi.hash
+    - match: '$'
+      pop: true
+    - match: '.'
+      scope: kodi.debug
+
+  in_header:
+    # Exit header on the closing separator
+    - match: '^.*info <general>: -{71}.*$'
+      scope: kodi.header
+      set: main
+    # Everything else in header is green
+    - match: '^.*$'
+      scope: kodi.header
+
+  in_crashlog_header:
+    # Exit crashlog header when we see LOG FILE section
+    - match: '^#{10,}.*LOG FILE.*$'
+      scope: kodi.crashlog.header
+      set: main
+    # Everything else in crashlog header is red
+    - match: '^.*$'
+      scope: kodi.crashlog.header
