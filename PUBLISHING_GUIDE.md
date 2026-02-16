@@ -23,13 +23,13 @@ Before submitting, ensure your package meets these requirements:
 
 ### 1. Create GitHub Repository
 
-1. Create a new repository: `https://github.com/[your-username]/kodi-log-highlighter`
+1. Create a new repository: `https://github.com/bossanova808/kodi-log-highlighter`
    
    **Important naming**: The repository name should match your package name (or be similar).
 
 2. Clone it locally:
    ```bash
-   git clone https://github.com/[your-username]/kodi-log-highlighter.git
+   git clone https://github.com/bossanova808/kodi-log-highlighter.git
    cd kodi-log-highlighter
    ```
 
@@ -81,7 +81,7 @@ git push --tags
 2. Click "Fork" in the top right
 3. Clone your fork:
    ```bash
-   git clone https://github.com/[your-username]/package_control_channel.git
+   git clone https://github.com/bossanova808/package_control_channel.git
    cd package_control_channel
    ```
 
@@ -96,7 +96,7 @@ git push --tags
     "packages": [
         {
             "name": "Kodi Log Highlighter",
-            "details": "https://github.com/[your-username]/kodi-log-highlighter",
+            "details": "https://github.com/bossanova808/kodi-log-highlighter",
             "releases": [
                 {
                     "sublime_text": ">=4000",
@@ -104,8 +104,8 @@ git push --tags
                 }
             ],
             "labels": ["language syntax", "logs"],
-            "readme": "https://raw.githubusercontent.com/[your-username]/kodi-log-highlighter/main/README.md",
-            "issues": "https://github.com/[your-username]/kodi-log-highlighter/issues"
+            "readme": "https://raw.githubusercontent.com/bossanova808/kodi-log-highlighter/main/README.md",
+            "issues": "https://github.com/bossanova808/kodi-log-highlighter/issues"
         }
     ]
 }
