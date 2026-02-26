@@ -1,4 +1,7 @@
 # Kodi Log Highlighter
+===================================
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/bossanova808) 
 
 Syntax highlighting for Kodi log files in Sublime Text.
 
