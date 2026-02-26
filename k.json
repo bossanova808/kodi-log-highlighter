@@ -2,7 +2,7 @@
 	"schema_version": "4.0.0",
 	"packages": [
 		{
-			"name": "Kodi Log Highlighter",
+			"name": "Kodi Log",
 			"details": "https://github.com/bossanova808/kodi-log-highlighter",
 			"releases": [
 				{
@@ -11,8 +11,6 @@
 				}
 			],
 			"labels": ["language syntax", "logs"],
-			"readme": "https://raw.githubusercontent.com/bossanova808/kodi-log-highlighter/main/README.md",
-			"issues": "https://github.com/bossanova808/kodi-log-highlighter/issues"
 		}
 	]
 }
